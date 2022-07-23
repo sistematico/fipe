@@ -1,31 +1,50 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import { ref, watchEffect } from 'vue'
+
+const tipos = ['carros', 'motos', 'caminhoes']
+const tipoAtual = ref(tipos[0])
+const marcas = ref<any[]>([])
+
+const modelos = ref([])
+
+const selectMarca = async (event: Event) => {
+  const marca = (event.target as HTMLSelectElement).value
+  const url = `https://parallelum.com.br/fipe/api/v1/${tipoAtual.value}/marcas/${marca}/modelos`
+//   modelos.value = await (await fetch(url)).json()
+  modelos.value = await (await fetch(url)).json().then( data => data.modelos )
+//   console.log((event.target as HTMLSelectElement).value)
+  console.log(modelos.value)
+}
+
+const selectModelo = async (event: Event) => {
+  const marca = (event.target as HTMLSelectElement).value
+  const url = `https://parallelum.com.br/fipe/api/v1/${tipoAtual.value}/marcas/${marca}/modelos`
+  modelos.value = await (await fetch(url)).json().then( data => data.modelos )
+//   console.log((event.target as HTMLSelectElement).value)
+}
+
+watchEffect(async () => {
+  const url = `https://parallelum.com.br/fipe/api/v1/${tipoAtual.value}/marcas`
+  marcas.value = await (await fetch(url)).json()
+})
 </script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
-</template>
+  <h1>Tabela Fipe</h1>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+  <template v-for="tipo in tipos">
+    <input type="radio" :id="tipo" :value="tipo" name="tipo" v-model="tipoAtual" />
+    <label :for="tipo">{{ tipo }}</label>
+  </template>
+
+  <select @change="selectMarca($event)">
+    <template v-for="{ nome, codigo } in marcas">
+      <option :value="codigo">{{ nome }}</option>
+    </template>
+  </select>
+
+  <select @change="selectModelo($event)" v-if="marcas">
+    <template v-for="{ nome, codigo } in modelos">
+      <option :value="codigo">{{ nome }}</option>
+    </template>
+  </select>
+</template>

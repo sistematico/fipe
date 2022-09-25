@@ -1,3 +1,21 @@
+@font-face {
+  font-family: 'Nunito';
+  src: url('/fonts/Nunito-Regular.woff2') format('woff2'),
+      url('/fonts/Nunito-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+  html {
+    font-family: 'Nunito', system-ui, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+  }
+}

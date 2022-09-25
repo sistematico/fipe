@@ -50,14 +50,16 @@ watch(tipoAtual, async () => {
 </script>
 <template>
   <main role="main" class="w-full flex flex-col h-screen content-center justify-center">
-    <div class="w-full sm:w-5/6 md:w-3/4 lg:w-2/5 rounded-xl shadow-md m-auto">
-      <div class="bg-base-200 rounded shadow p-5">
+    <div class="w-full sm:w-5/6 xl:w-1/2 rounded-xl shadow-md m-auto">
+      <div class="bg-base-200 rounded shadow p-4">
         <div class="sm:flex sm:items-start">
-          <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-base-100 sm:mx-0 sm:h-10 sm:w-10">
-            <icon name="car" />
-          </div>
-          <div class="mt-2 ml-0 sm:ml-4 md:text-left">
-            <h3 class="text-lg leading-6 font-medium" id="modal-title">Tabela Fipe</h3>
+          <div class="text-center sm:text-left">
+            <div class="flex items-center flex-col sm:flex-row sm:mt-2">
+              <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-base-100 sm:mx-0 sm:h-10 sm:w-10">
+                <icon name="car" />
+              </div>
+              <h3 class="text-xl md:text-2xl font-bold ml-2">Tabela Fipe</h3>
+            </div>
 
             <ul class="steps mt-3 w-full md:w-4/5">
               <li class="step" :class="{ 'step-primary': tipoAtual != 'Tipo' }">Tipo</li>
@@ -66,7 +68,7 @@ watch(tipoAtual, async () => {
               <li class="step" :class="{ 'step-primary': anoAtual != 'Ano' }">Ano</li>
             </ul>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2 mt-6 content-center justify-start">
+            <div class="grid grid-cols-1 sm:grid-cols-5 mt-6 place-content-between gap-2 md:gap-3">
               <div class="grid content-center">
                 <select class="select" v-model="tipoAtual">
                     <option value="Tipo" selected>Selecione</option>
@@ -103,7 +105,7 @@ watch(tipoAtual, async () => {
                 </select>
               </div>
 
-              <div class="grid content-center text-center text-2xl font-bold">
+              <div class="grid content-center text-center text-2xl sm:text-xl md:text-md font-bold">
                 {{ resultado }}
               </div>
             </div>

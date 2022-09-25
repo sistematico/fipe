@@ -13,14 +13,13 @@ module.exports = {
     require("daisyui")
   ],
 
+  daisyui: {
+    darkTheme: "dark",
+  },
+
   fontFamily: {
     sans: ['Nunito', 'sans-serif'],
     serif: ['Merriweather', 'serif'],
   },
 
-  corePlugins: {
-    outlineWidth: false,
-    objectFit: false,
-    objectPosition: false,
-  }
 }

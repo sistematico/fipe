@@ -68,7 +68,7 @@ watch(tipoAtual, async () => {
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2 mt-6 content-center justify-start">
               <div class="grid content-center">
-                <select class="select border-transparent focus:border-transparent focus:ring-0" v-model="tipoAtual">
+                <select class="select" v-model="tipoAtual">
                     <option value="Tipo" selected>Selecione</option>
                     <option value="carros" selected>Carros</option>
                     <option value="motos">Motos</option>
@@ -77,7 +77,7 @@ watch(tipoAtual, async () => {
               </div>
 
               <div class="grid content-center">
-                <select class="select" @change="selectMarca($event)" v-model="marcaAtual">
+                <select class="select" @change="selectMarca($event)" v-model="marcaAtual" :disabled="tipoAtual == 'Tipo'">
                   <option value="Marca" selected>Selecione</option>
                   <template v-for="{ nome, codigo } in marcas">
                     <option :value="codigo">{{ nome }}</option>
@@ -86,7 +86,7 @@ watch(tipoAtual, async () => {
               </div>
 
               <div class="grid content-center">
-                <select class="select" @change="selectModelo($event)" v-model="modeloAtual">
+                <select class="select" @change="selectModelo($event)" v-model="modeloAtual" :disabled="marcaAtual == 'Marca'">
                   <option value="Modelo" selected>Selecione</option>
                   <template v-for="{ nome, codigo } in modelos">
                     <option :value="codigo">{{ nome }}</option>
@@ -95,7 +95,7 @@ watch(tipoAtual, async () => {
               </div>
 
               <div class="grid content-center">
-                <select class="select" @change="selectAno($event)" v-model="anoAtual">
+                <select class="select" @change="selectAno($event)" v-model="anoAtual" :disabled="modeloAtual == 'Modelo'">
                   <option value="Ano" selected>Selecione</option>
                   <template v-for="{ nome, codigo } in anos">
                     <option :value="codigo">{{ nome }}</option>

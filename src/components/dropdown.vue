@@ -6,9 +6,6 @@ defineProps<{
 </script>
 <template>
   <div class="max-w-sm rounded overflow-hidden shadow-lg">
-
-
-
     <div class="mr-8 ml-4">
       <div class="relative">
         <button class="bg-teal p-3 rounded text-white shadow-inner w-full">

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
+import icon from '@/components/icon.vue'
 
 const marcas = ref<any[]>([])
 const modelos = ref<any[]>([])
@@ -49,25 +50,23 @@ watch(tipoAtual, async () => {
 </script>
 <template>
   <main role="main" class="w-full flex flex-col h-screen content-center justify-center">
-    <div class="w-full sm:w-1/2 lg:w-5/8 rounded-xl shadow-md m-auto">
-      <div class="bg-base-200 rounded shadow px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+    <div class="w-full sm:w-5/6 md:w-3/4 lg:w-2/5 rounded-xl shadow-md m-auto">
+      <div class="bg-base-200 rounded shadow p-5">
         <div class="sm:flex sm:items-start">
           <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-base-100 sm:mx-0 sm:h-10 sm:w-10">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-            </svg>
+            <icon name="car" />
           </div>
-          <div class="mt-2 sm:ml-4 text-center md:text-left">
+          <div class="mt-2 ml-0 sm:ml-4 md:text-left">
             <h3 class="text-lg leading-6 font-medium" id="modal-title">Tabela Fipe</h3>
 
-            <ul class="steps mt-2 w-4/5">
+            <ul class="steps mt-3 w-full md:w-4/5">
               <li class="step" :class="{ 'step-primary': tipoAtual != 'Tipo' }">Tipo</li>
               <li class="step" :class="{ 'step-primary': marcaAtual != 'Marca' }">Marca</li>
               <li class="step" :class="{ 'step-primary': modeloAtual != 'Modelo' }">Modelo</li>
               <li class="step" :class="{ 'step-primary': anoAtual != 'Ano' }">Ano</li>
             </ul>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-x-3 mt-6 content-center">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2 mt-6 content-center justify-start">
               <div class="grid content-center">
                 <select class="select border-transparent focus:border-transparent focus:ring-0" v-model="tipoAtual">
                     <option value="Tipo" selected>Selecione</option>
